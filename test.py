@@ -6,5 +6,5 @@ print(get_response.json())
 
 input()
 
-get_response = requests.get(BASE_URL + "video/1")
+get_response = requests.get(BASE_URL + "video/2")
 print(get_response.json())
