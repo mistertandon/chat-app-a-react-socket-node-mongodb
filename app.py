@@ -20,7 +20,8 @@ class Video(Resource):
     def put(self, video_id):
         
         args = video_put_args.parse_args()
-        print(args)
+        videos[video_id] = args
+
         return {video_id: args}
 
 api.add_resource(Video, "/video/<int:video_id>")
