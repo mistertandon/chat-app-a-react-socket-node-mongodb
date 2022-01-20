@@ -3,6 +3,7 @@ import {
   registrationReducerInitState,
   registrationReducer,
 } from "../Reducers/registrationReducer";
+import { makeRequest } from "./../helper/request";
 
 const RegisterPage = () => {
   const [
@@ -28,6 +29,21 @@ const RegisterPage = () => {
     },
     dispatch,
   ] = useReducer(registrationReducer, registrationReducerInitState);
+
+  const handleUserRegistration = async (event) => {
+    event.preventDefault();
+    const response = await makeRequest(
+      "POST",
+      "http://localhost:8000/user/register",
+      {
+        name: nameValue,
+        email: emailValue,
+        password: passwordVal,
+      }
+    );
+
+    console.log("response", response);
+  };
 
   const handleNameInput = (event) => {
     const nameInput = event.target.value;
@@ -57,44 +73,56 @@ const RegisterPage = () => {
     }
   };
 
+  const formErrorResolved =
+    !nameErrorStatus &&
+    !emailErrorStatus &&
+    !passwordErrorStatus &&
+    !isNamePristine &&
+    !isEmailPristine &&
+    !isPasswordPristine;
+
   return (
     <div className="registration--ctr">
-      <div className="field--ctr-rc">
-        <label> Name</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          autoComplete="off"
-          value={nameValue}
-          onChange={handleNameInput}
-        />
-      </div>
-      <div className="field--ctr-rc">
-        <label> Email</label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          autoComplete="off"
-          value={emailValue}
-          onChange={handleEmailInput}
-        />
-      </div>
-      <div className="field--ctr-rc">
-        <label> Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          autoComplete="off"
-          value={passwordVal}
-          onChange={handlePasswordInput}
-        />
-      </div>
-      <div className="field--ctr-rc">
-        <button>Register</button>
-      </div>
+      <form onSubmit={handleUserRegistration}>
+        <div className="field--ctr-rc">
+          <label> Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            autoComplete="off"
+            value={nameValue}
+            onChange={handleNameInput}
+          />
+        </div>
+        <div className="field--ctr-rc">
+          <label> Email</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            autoComplete="off"
+            value={emailValue}
+            onChange={handleEmailInput}
+          />
+        </div>
+        <div className="field--ctr-rc">
+          <label> Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autoComplete="off"
+            value={passwordVal}
+            onChange={handlePasswordInput}
+          />
+        </div>
+        <div className="field--ctr-rc">
+          <button disabled={formErrorResolved != true} type="submit">
+            Register
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
