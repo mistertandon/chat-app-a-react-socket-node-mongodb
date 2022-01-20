@@ -1,6 +1,5 @@
 exports.catchErrors = (fn) => {
   return function (req, res, next) {
-    // console.log("==========", req);
     fn(req, res, next).catch((err) => {
       console.log(err);
       if (typeof err === "string") {
