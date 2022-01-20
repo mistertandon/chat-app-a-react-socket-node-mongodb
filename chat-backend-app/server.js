@@ -21,6 +21,6 @@ require("./models/Message");
 
 const app = require("./app");
 
-app.listen(8000, () => {
+app.listen(3000, () => {
   console.log("BE app is listening at 8000");
 });
