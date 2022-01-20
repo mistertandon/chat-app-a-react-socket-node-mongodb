@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import {
   registrationReducerInitState,
   registrationReducer,
-} from "./../Reducers/resitrationReducer";
+} from "../Reducers/registrationReducer";
 
 const RegisterPage = () => {
   const [
@@ -58,8 +58,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="login--ctr">
-      <div className="field--ctr-lc">
+    <div className="registration--ctr">
+      <div className="field--ctr-rc">
         <label> Name</label>
         <input
           type="text"
@@ -70,7 +70,7 @@ const RegisterPage = () => {
           onChange={handleNameInput}
         />
       </div>
-      <div className="field--ctr-lc">
+      <div className="field--ctr-rc">
         <label> Email</label>
         <input
           type="text"
@@ -81,7 +81,7 @@ const RegisterPage = () => {
           onChange={handleEmailInput}
         />
       </div>
-      <div className="field--ctr-lc">
+      <div className="field--ctr-rc">
         <label> Password</label>
         <input
           type="password"
@@ -92,7 +92,7 @@ const RegisterPage = () => {
           onChange={handlePasswordInput}
         />
       </div>
-      <div className="field--ctr-lc">
+      <div className="field--ctr-rc">
         <button>Register</button>
       </div>
     </div>
