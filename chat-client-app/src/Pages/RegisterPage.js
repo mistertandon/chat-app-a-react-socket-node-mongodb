@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   registrationReducerInitState,
   registrationReducer,
@@ -6,6 +7,8 @@ import {
 import { makeRequest } from "./../helper/request";
 
 const RegisterPage = () => {
+  let navigate = useNavigate();
+
   const [
     {
       name: {
@@ -32,17 +35,22 @@ const RegisterPage = () => {
 
   const handleUserRegistration = async (event) => {
     event.preventDefault();
-    const response = await makeRequest(
-      "POST",
-      "http://localhost:8000/user/register",
-      {
-        name: nameValue,
-        email: emailValue,
-        password: passwordVal,
-      }
-    );
 
-    console.log("response", response);
+    try {
+      const response = await makeRequest(
+        "POST",
+        "http://localhost:8000/user/register",
+        {
+          name: nameValue,
+          email: emailValue,
+          password: passwordVal,
+        }
+      );
+      console.log("response", response);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNameInput = (event) => {
