@@ -28,7 +28,7 @@ export const loginReducer = (state, action) => {
       };
 
       break;
-    case "EMAIL_EMPTY":
+    case "EMPTY_EMAIL":
       return {
         ...state,
 
@@ -45,7 +45,26 @@ export const loginReducer = (state, action) => {
     case "UPDATE_PASSWORD":
       return {
         ...state,
-        password: { ...state.password, value: action.value },
+        password: {
+          ...state.password,
+          value: action.value,
+          isPristine: false,
+          errorStatus: false,
+          errorMessage: "",
+        },
+      };
+
+      break;
+    case "EMPTY_PASSWORD":
+      return {
+        ...state,
+        password: {
+          ...state.password,
+          value: "",
+          isPristine: false,
+          errorStatus: true,
+          errorMessage: "Password is mandatory",
+        },
       };
 
       break;
