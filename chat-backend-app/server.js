@@ -3,7 +3,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  `mongodb+srv://mistertandon:${"0291moJI**"}@clustera.nxyjw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+  "mongodb+srv://mistertandon:0291moJI**@clustera.nxyjw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 );
 
 mongoose.connection.on("error", (err) => {
@@ -21,6 +21,6 @@ require("./models/Message");
 
 const app = require("./app");
 
-app.listen(3000, () => {
+app.listen(8000, () => {
   console.log("BE app is listening at 8000");
 });

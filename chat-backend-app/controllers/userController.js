@@ -4,7 +4,6 @@ const User = mongoose.model("User");
 const jwt = require("jwt-then");
 
 exports.register = async (req, res) => {
-  console.log(req);
   const { name, email, password } = req.body;
 
   if (!email) throw "Email is manadtory";
@@ -22,17 +21,17 @@ exports.register = async (req, res) => {
   });
 };
 
-// exports.login = async (req, res) => {
-//   const { email, password } = req.body;
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
 
-//   const user = await User.find({
-//     email,
-//     password: shaw256(password) + process.env.SALT,
-//   });
+  const user = await User.find({
+    email,
+    password: shaw256(password) + process.env.SALT,
+  });
 
-//   if (!user) throw "Email and password didn't match";
+  if (!user) throw "Email and password didn't match";
 
-//   const token = jwt.sign({ is: user.id }, process.env.SECRET);
+  const token = await jwt.sign({ is: user._id }, process.env.SECRET);
 
-//   res.json({ message: `User has been loggge-in successfully`, token });
-// };
+  res.json({ message: `User has been loggge-in successfully`, token });
+};
