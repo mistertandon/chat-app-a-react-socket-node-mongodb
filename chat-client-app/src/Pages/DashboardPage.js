@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-
+import { Link } from "react-router-dom";
 import {
   dashboardReducerInitState,
   dashboardReducer,
@@ -30,7 +30,7 @@ const DashboardPage = () => {
 
   return (
     <div className="dashboard--ctr">
-      <div className="field--ctr-dc">
+      <div className="child-a--dc field--ctr-dc">
         <label> Name</label>
         <input
           type="text"
@@ -41,8 +41,16 @@ const DashboardPage = () => {
           onChange={handleNameInput}
         />
       </div>
-      <div className="field--ctr-dc">
+      <div className="child-b--dc field--ctr-dc">
         <button>Create</button>
+      </div>
+      <div className="child-c--dc classrooms--ctr">
+        <div className="cc-child-a--dc classroom--ctr">
+          <div className="ccca-child-a--dc">Guest</div>
+          <div className="ccca-child-b--dc">
+            <Link to={`/chatroom/123456`}>Join</Link>
+          </div>
+        </div>
       </div>
     </div>
   );
